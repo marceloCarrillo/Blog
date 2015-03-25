@@ -1,0 +1,2369 @@
+  [1m[36m (142.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (145.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateArticles (20150325085347)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (5.0ms)[0m  CREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" text, "categories" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (2.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150325085347"]]
+  [1m[35m (140.0ms)[0m  commit transaction
+Migrating to DeviseCreateUsers (20150325091627)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamp` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at C:/Users/marcelo/Mis documentos/proyecto2/blog/db/migrate/20150325091627_devise_create_users.rb:34)
+  [1m[35m (5.0ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (2.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150325091627"]]
+  [1m[36m (97.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (2.5ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+
+
+Started GET "/" for ::1 at 2015-03-25 06:19:53 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/railties-4.2.1/lib/rails/templates/rails/welcome/index.html.erb (22.5ms)
+Completed 200 OK in 208ms (Views: 180.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/welcome/index" for ::1 at 2015-03-25 06:20:08 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 500 Internal Server Error in 2120ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined local variable or method `new_usuario_session_path' for #<#<Class:0x63a4850>:0x639ffa8>):
+    50:         <div class="navbar-collapse collapse navbar-responsive-collapse">
+    51:           <ul class="nav navbar-nav">
+    52:             <li><%= link_to "Articulo", articles_path  %></li>
+    53:             <li><%= link_to "Identificar",             new_usuario_session_path  %></li>
+    54:             <% if usuario_signed_in? %>
+    55:             <li><%= link_to "Cerrar Sesion", destroy_usuario_session_path, method: :delete  %></li>
+    56:             <%end%>
+  app/views/layouts/application.html.erb:53:in `_app_views_layouts_application_html_erb__634588443_52215408'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (65.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (32.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (82.5ms)
+
+
+Started GET "/welcome/index" for ::1 at 2015-03-25 06:20:11 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 500 Internal Server Error in 245ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined local variable or method `new_usuario_session_path' for #<#<Class:0x63a4850>:0x630ffc0>):
+    50:         <div class="navbar-collapse collapse navbar-responsive-collapse">
+    51:           <ul class="nav navbar-nav">
+    52:             <li><%= link_to "Articulo", articles_path  %></li>
+    53:             <li><%= link_to "Identificar",             new_usuario_session_path  %></li>
+    54:             <% if usuario_signed_in? %>
+    55:             <li><%= link_to "Cerrar Sesion", destroy_usuario_session_path, method: :delete  %></li>
+    56:             <%end%>
+  app/views/layouts/application.html.erb:53:in `_app_views_layouts_application_html_erb__634588443_52215408'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (32.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (30.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (65.0ms)
+
+
+Started GET "/welcome/index" for ::1 at 2015-03-25 06:21:27 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 460ms (Views: 457.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:21:28 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:21:28 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:21:28 -0300
+
+
+Started GET "/assets/application-61ec71a2c72883bdaf7f6cd454805ea6.css?body=1" for ::1 at 2015-03-25 06:21:28 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:21:28 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:21:28 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:21:28 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:21:28 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:21:28 -0300
+
+
+Started GET "/assets/application-1a0b8b72c5a0481a3e13bf4d1d25fe19.js?body=1" for ::1 at 2015-03-25 06:21:28 -0300
+
+
+Started GET "/welcome/index" for ::1 at 2015-03-25 06:22:56 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 483ms (Views: 480.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:22:56 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:22:56 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:22:56 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:22:56 -0300
+
+
+Started GET "/assets/application-61ec71a2c72883bdaf7f6cd454805ea6.css?body=1" for ::1 at 2015-03-25 06:22:56 -0300
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:22:56 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:22:56 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:22:56 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:22:56 -0300
+
+
+Started GET "/assets/application-1a0b8b72c5a0481a3e13bf4d1d25fe19.js?body=1" for ::1 at 2015-03-25 06:22:56 -0300
+
+
+Started GET "/welcome/index" for ::1 at 2015-03-25 06:23:52 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 348ms (Views: 347.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:23:52 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:23:52 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:23:52 -0300
+
+
+Started GET "/assets/application-61ec71a2c72883bdaf7f6cd454805ea6.css?body=1" for ::1 at 2015-03-25 06:23:52 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:23:52 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:23:52 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:23:52 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:23:52 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:23:52 -0300
+
+
+Started GET "/assets/application-1a0b8b72c5a0481a3e13bf4d1d25fe19.js?body=1" for ::1 at 2015-03-25 06:23:52 -0300
+
+
+Started GET "/welcome/index" for 127.0.0.1 at 2015-03-25 06:26:34 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 1550ms (Views: 1532.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/welcome/index" for ::1 at 2015-03-25 06:26:36 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 370ms (Views: 370.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:26:36 -0300
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:26:36 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:26:36 -0300
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:26:36 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:26:36 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:26:36 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:26:36 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:26:36 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:26:36 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:26:36 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:26:37 -0300
+
+
+Started GET "/welcome/index" for ::1 at 2015-03-25 06:27:02 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 420ms (Views: 417.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:27:02 -0300
+
+
+Started GET "/users/sign_in" for ::1 at 2015-03-25 06:27:10 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/devise-3.4.1/app/views/devise/shared/_links.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/devise-3.4.1/app/views/devise/sessions/new.html.erb within layouts/application (232.5ms)
+Completed 200 OK in 963ms (Views: 920.0ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2015-03-25 06:27:30 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nu285FD2927FbxSsY6yRBKp4ATEywKZ7rB3yXDOkH839y5jtfeiUdAIV91ZLk5NykwM/x25ZOwIP6H4fTQ017Q==", "user"=>{"email"=>"marcelo@gmai.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (2.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "marcelo@gmai.com"]]
+Completed 401 Unauthorized in 43ms (ActiveRecord: 2.5ms)
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nu285FD2927FbxSsY6yRBKp4ATEywKZ7rB3yXDOkH839y5jtfeiUdAIV91ZLk5NykwM/x25ZOwIP6H4fTQ017Q==", "user"=>{"email"=>"marcelo@gmai.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/devise-3.4.1/app/views/devise/shared/_links.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/devise-3.4.1/app/views/devise/sessions/new.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 483ms (Views: 355.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:27:30 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:27:30 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:27:30 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:27:30 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:27:30 -0300
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:27:30 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:27:31 -0300
+
+
+Started POST "/users/sign_in" for ::1 at 2015-03-25 06:27:32 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OQEmss2yuxcpgXXptGcEyBuYWPG+xcV2EXSE+N1t9DhaJwK74KzYDe77lhOcWAa+IuNmB+JcWA+ygQi7o8TeGA==", "user"=>{"email"=>"marcelo@gmai.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms)
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OQEmss2yuxcpgXXptGcEyBuYWPG+xcV2EXSE+N1t9DhaJwK74KzYDe77lhOcWAa+IuNmB+JcWA+ygQi7o8TeGA==", "user"=>{"email"=>"marcelo@gmai.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/devise-3.4.1/app/views/devise/shared/_links.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/devise-3.4.1/app/views/devise/sessions/new.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 688ms (Views: 685.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:27:33 -0300
+
+
+Started GET "/users/sign_up" for ::1 at 2015-03-25 06:27:34 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/devise-3.4.1/app/views/devise/shared/_links.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/devise-3.4.1/app/views/devise/registrations/new.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 438ms (Views: 437.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:27:34 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:27:34 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:27:34 -0300
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:27:34 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:27:34 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:27:34 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:27:35 -0300
+
+
+Started POST "/users" for ::1 at 2015-03-25 06:27:48 -0300
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bUeTv8WNDO2prahrySjrnUv8aaVsrfKlLLsPko0cSqgOYbe26JNv927XS5HhF+nrcodXUzA0b9yPToPR87VgiA==", "user"=>{"email"=>"marcelo@gmai.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'marcelo@gmai.com' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "marcelo@gmai.com"], ["encrypted_password", "$2a$10$F5yJY/qEHp79QoEx41bPveCvyQ351ndOsMC5AaeQuuEEJOATI1KAO"], ["created_at", "2015-03-25 09:27:49.053035"], ["updated_at", "2015-03-25 09:27:49.053035"]]
+  [1m[35m (135.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.5ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2015-03-25 09:27:49.198037"], ["current_sign_in_at", "2015-03-25 09:27:49.198037"], ["last_sign_in_ip", "::1"], ["current_sign_in_ip", "::1"], ["sign_in_count", 1], ["updated_at", "2015-03-25 09:27:49.203037"], ["id", 1]]
+  [1m[36m (85.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 413ms (ActiveRecord: 222.5ms)
+
+
+Started GET "/" for ::1 at 2015-03-25 06:27:49 -0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/railties-4.2.1/lib/rails/templates/rails/welcome/index.html.erb (2.5ms)
+Completed 200 OK in 13ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2015-03-25 06:28:57 -0300
+Processing by Devise::SessionsController#new as HTML
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 13ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/" for ::1 at 2015-03-25 06:28:57 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 368ms (Views: 365.0ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2015-03-25 06:29:04 -0300
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"ajJleh3VZZri78eTWE2TH/jzHnqT5wjUvi6/EquK0yQJFEFzMMsGgCWVJGlwcpFpwYggjM9+la0d2zNR1SP5BA=="}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 15ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-03-25 06:29:04 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 338ms (Views: 337.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:29:05 -0300
+
+
+Started GET "/users/sign_in" for ::1 at 2015-03-25 06:29:09 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/devise-3.4.1/app/views/devise/shared/_links.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/devise-3.4.1/app/views/devise/sessions/new.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 638ms (Views: 635.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for ::1 at 2015-03-25 06:29:12 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/devise-3.4.1/app/views/devise/shared/_links.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/devise-3.4.1/app/views/devise/registrations/new.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 600ms (Views: 597.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2015-03-25 06:29:23 -0300
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TeqLE9PDSXn9iQNjQnZyB7NsD/WGeCFOWTuwAelrls3paDtJk82uJLnwG4Zi6KtgJLf4EF6pt+PVHarAfMcWuQ==", "user"=>{"email"=>"marcelo1@gmai.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'marcelo1@gmai.com' LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "marcelo1@gmai.com"], ["encrypted_password", "$2a$10$k959Tp8oOLSHfPMUmXzQ6OgN0tmZEEYRMFgTf5oIHGIWI5AzWJKJy"], ["created_at", "2015-03-25 09:29:23.741989"], ["updated_at", "2015-03-25 09:29:23.741989"]]
+  [1m[35m (135.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.5ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2015-03-25 09:29:23.881991"], ["current_sign_in_at", "2015-03-25 09:29:23.881991"], ["last_sign_in_ip", "::1"], ["current_sign_in_ip", "::1"], ["sign_in_count", 1], ["updated_at", "2015-03-25 09:29:23.886991"], ["id", 2]]
+  [1m[36m (107.5ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 410ms (ActiveRecord: 245.0ms)
+
+
+Started GET "/" for ::1 at 2015-03-25 06:29:24 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+Completed 200 OK in 588ms (Views: 580.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:29:24 -0300
+
+
+Started GET "/articles" for ::1 at 2015-03-25 06:29:36 -0300
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.0ms)[0m  [1mSELECT "articles".* FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (7.5ms)
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+Completed 200 OK in 703ms (Views: 692.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/articles" for ::1 at 2015-03-25 06:30:56 -0300
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.0ms)[0m  [1mSELECT "articles".* FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (5.0ms)
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+Completed 200 OK in 423ms (Views: 417.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:30:57 -0300
+
+
+Started GET "/articles/new" for ::1 at 2015-03-25 06:30:59 -0300
+Processing by ArticlesController#new as HTML
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `authenticate_usuario!' for #<ArticlesController:0x6949710>):
+  activesupport (4.2.1) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:145:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:145:in `block in halting_and_conditional'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_process_action_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (75.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (37.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (87.5ms)
+
+
+Started GET "/articles/new" for ::1 at 2015-03-25 06:30:59 -0300
+Processing by ArticlesController#new as HTML
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `authenticate_usuario!' for #<ArticlesController:0x37382b8>):
+  activesupport (4.2.1) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:145:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:145:in `block in halting_and_conditional'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_process_action_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (40.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (30.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (67.5ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2015-03-25 06:31:10 -0300
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 13ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-03-25 06:31:10 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+Completed 200 OK in 433ms (Views: 430.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/articles" for ::1 at 2015-03-25 06:31:12 -0300
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (2.5ms)[0m  [1mSELECT "articles".* FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (5.0ms)
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+Completed 200 OK in 465ms (Views: 460.0ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/articles/new" for ::1 at 2015-03-25 06:31:15 -0300
+Processing by ArticlesController#new as HTML
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `authenticate_usuario!' for #<ArticlesController:0x6bb77d8>):
+  activesupport (4.2.1) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:145:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:145:in `block in halting_and_conditional'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_process_action_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (62.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (37.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (135.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2015-03-25 06:31:15 -0300
+Processing by ArticlesController#new as HTML
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `authenticate_usuario!' for #<ArticlesController:0x6420f78>):
+  activesupport (4.2.1) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:145:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:145:in `block in halting_and_conditional'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_process_action_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (92.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (32.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (80.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2015-03-25 06:31:42 -0300
+Processing by ArticlesController#new as HTML
+  [1m[36mUser Load (2.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+  Rendered articles/_form.html.erb (12.5ms)
+  Rendered articles/new.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 493ms (Views: 450.0ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:31:42 -0300
+
+
+Started GET "/articles" for ::1 at 2015-03-25 06:31:45 -0300
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (0.0ms)[0m  SELECT "articles".* FROM "articles"
+  Rendered articles/index.html.erb within layouts/application (5.0ms)
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 578ms (Views: 577.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2015-03-25 06:31:47 -0300
+Processing by Devise::SessionsController#new as HTML
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 8ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-03-25 06:31:47 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 465ms (Views: 465.0ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2015-03-25 06:31:49 -0300
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"jIFO0QKbbSPoLgYEaLSDJLzz85ufrMM2PPE7Bc3l/4soA/6LQpWKfqxXHuFIKlpDKygEfkd9VZuw1yHEWEl//w=="}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 18ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-03-25 06:31:49 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 665ms (Views: 662.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:31:49 -0300
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:31:49 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:31:49 -0300
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:31:49 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:31:49 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:31:49 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:31:49 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:31:49 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:31:49 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:31:50 -0300
+
+
+Started GET "/articles" for ::1 at 2015-03-25 06:31:51 -0300
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.0ms)[0m  [1mSELECT "articles".* FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 640ms (Views: 637.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2015-03-25 06:31:53 -0300
+Processing by ArticlesController#new as HTML
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2015-03-25 06:31:53 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/devise-3.4.1/app/views/devise/shared/_links.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby2.1.0/lib/ruby/gems/2.1.0/gems/devise-3.4.1/app/views/devise/sessions/new.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 775ms (Views: 770.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-03-25 06:38:26 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 633ms (Views: 600.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-25 06:38:27 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 330ms (Views: 327.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for 127.0.0.1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for 127.0.0.1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for 127.0.0.1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for 127.0.0.1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:38:27 -0300
+
+
+Started GET "/" for ::1 at 2015-03-25 06:39:29 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 663ms (Views: 660.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:39:30 -0300
+
+
+Started GET "/articles" for ::1 at 2015-03-25 06:39:38 -0300
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (2.5ms)[0m  SELECT "articles".* FROM "articles"
+  Rendered articles/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 580ms (Views: 565.0ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2015-03-25 06:39:41 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (2.5ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (187.5ms)
+Completed 200 OK in 815ms (Views: 772.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for ::1 at 2015-03-25 06:39:50 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/shared/_links.html.erb (0.0ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 710ms (Views: 707.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for ::1 at 2015-03-25 06:41:28 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/shared/_links.html.erb (0.0ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 615ms (Views: 610.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:41:29 -0300
+
+
+Started GET "/articles" for ::1 at 2015-03-25 06:41:30 -0300
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (2.5ms)[0m  [1mSELECT "articles".* FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 578ms (Views: 575.0ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/articles" for ::1 at 2015-03-25 06:42:13 -0300
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (0.0ms)[0m  SELECT "articles".* FROM "articles"
+  Rendered articles/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 430ms (Views: 427.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:42:13 -0300
+
+
+Started GET "/articles/new" for ::1 at 2015-03-25 06:42:35 -0300
+Processing by ArticlesController#new as HTML
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2015-03-25 06:42:35 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 545ms (Views: 542.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2015-03-25 06:42:49 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"s+qyK6oxQJ/+zzsPOTWrCBOmf0yyTHOAoH8CsSH37Z0Ac7X3sxGawhE+3cKoNFInCjYgo8JfIYdDovofg+TkAg==", "user"=>{"email"=>"marcelo@gmai.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Ingresar"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["email", "marcelo@gmai.com"]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "users" SET "current_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["current_sign_in_at", "2015-03-25 09:42:49.411864"], ["sign_in_count", 2], ["updated_at", "2015-03-25 09:42:49.414364"], ["id", 1]]
+  [1m[35m (97.5ms)[0m  commit transaction
+Redirected to http://localhost:3000/articles/new
+Completed 302 Found in 333ms (ActiveRecord: 97.5ms)
+
+
+Started GET "/articles/new" for ::1 at 2015-03-25 06:42:49 -0300
+Processing by ArticlesController#new as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered articles/_form.html.erb (10.0ms)
+  Rendered articles/new.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 403ms (Views: 387.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:42:50 -0300
+
+
+Started POST "/articles" for ::1 at 2015-03-25 06:43:09 -0300
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ehooRkUH3AYlsRC/fBOh5B/7lH0Trr8JvQaAWOYYGhF6fcUUI4NzeeVKcOxs/reYLqYDHowN49/1aTJEmBQIlA==", "article"=>{"title"=>"Articulo 1", "description"=>"descripcion", "categories"=>"categria"}, "commit"=>"Create Article"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "articles" ("title", "description", "categories", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "Articulo 1"], ["description", "descripcion"], ["categories", "categria"], ["created_at", "2015-03-25 09:43:09.334670"], ["updated_at", "2015-03-25 09:43:09.334670"]]
+  [1m[36m (275.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/articles/1
+Completed 302 Found in 293ms (ActiveRecord: 275.0ms)
+
+
+Started GET "/articles/1" for ::1 at 2015-03-25 06:43:09 -0300
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mArticle Load (2.5ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered articles/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 528ms (Views: 505.0ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:43:10 -0300
+
+
+Started GET "/articles" for ::1 at 2015-03-25 06:43:17 -0300
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (2.5ms)[0m  SELECT "articles".* FROM "articles"
+  Rendered articles/index.html.erb within layouts/application (10.0ms)
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 765ms (Views: 760.0ms | ActiveRecord: 2.5ms)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2015-03-25 06:43:58 -0300
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"p0U3nj+E+89Bo3rOgKJa44z9ZC/25LKFR0KMwHnoUsOnItrMWQBUsIFYGp2QT0yfvaDzTGlH7lMPLT7cB+RARg=="}
+  [1m[35mUser Load (2.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 33ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/" for ::1 at 2015-03-25 06:43:58 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 580ms (Views: 580.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap-3d4ac324e8c8a16c343c471da829ffcc.css?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome-74619dc948ed22c8c73f8a012bc352b1.css?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/bootstrap_and_overrides-990faa993cf02a385a157284f507e437.css?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/articles-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/application-d8339726bd277b340f1f472497f67b56.css?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/scaffolds-e644505ad0cbd0547fa1db34e835ddf4.css?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/welcome-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/twitter/bootstrap/transition-49c071d4d736acca69daed5bd6c4fdbd.js?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/twitter/bootstrap/alert-4fa131fff2ae05a1d89df662cd4a8531.js?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/twitter/bootstrap/modal-d403efa7333c333fdeecc5daa727c437.js?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/twitter/bootstrap/dropdown-89b3696cc302eaf377aca640fae08632.js?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy-f3a0e91892e9edb7ccced4ed84ff23ec.js?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tab-fab339701c02e2cb7d02570dd26fcf10.js?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/twitter/bootstrap/tooltip-1727c885f6618bb619e6a29ef0496d11.js?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/twitter/bootstrap/popover-c19ae92999a32fa658ffe5d5cc13d195.js?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/twitter/bootstrap/button-dcd83af4b8aa46a9026dec4ea360a003.js?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/twitter/bootstrap/collapse-cfd6f6e5cff9c41e78cc52464a71358b.js?body=1" for ::1 at 2015-03-25 06:43:58 -0300
+
+
+Started GET "/assets/twitter/bootstrap/carousel-ac6115504ba6a31f58406c5978a6aa20.js?body=1" for ::1 at 2015-03-25 06:43:59 -0300
+
+
+Started GET "/assets/twitter/bootstrap/affix-745457a96802e8f61e15a7622b54b68f.js?body=1" for ::1 at 2015-03-25 06:43:59 -0300
+
+
+Started GET "/assets/twitter/bootstrap-4a7c8463ef111cbe52eec5efe89f8319.js?body=1" for ::1 at 2015-03-25 06:43:59 -0300
+
+
+Started GET "/assets/turbolinks-686d2bf7d9d383528c901c64187a8c31.js?body=1" for ::1 at 2015-03-25 06:43:59 -0300
+
+
+Started GET "/assets/articles-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:43:59 -0300
+
+
+Started GET "/assets/bootstrap-91416daf9f05a6e9ca13ef54aa8dcb39.js?body=1" for ::1 at 2015-03-25 06:43:59 -0300
+
+
+Started GET "/assets/welcome-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-25 06:43:59 -0300
+
+
+Started GET "/assets/application-79788a6092c48aa3c27a2e06b70d2abc.js?body=1" for ::1 at 2015-03-25 06:43:59 -0300
